@@ -26,27 +26,27 @@ To run this project locally, follow these steps:
 
 1. Clone the repository:
 
-   \`\`\`bash
+   ```bash
    git clone https://github.com/Soab42/algostar
-   \`\`\`
+   ```
 
 2. Navigate to the project folder:
 
-   \`\`\`bash
-   cd cart-management-system
-   \`\`\`
+```bash
+ cd cart-management-system
+```
 
 3. Install dependencies:
 
-   \`\`\`bash
-   npm install
-   \`\`\`
+```bash
+ npm install
+```
 
 4. Start the development server:
 
-   \`\`\`bash
-   npm start
-   \`\`\`
+```bash
+ npm start
+```
 
 The app will be available at `http://localhost:5173`.
 
