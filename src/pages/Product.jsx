@@ -16,12 +16,12 @@ export default function Product() {
 
   if (!product) return <div>Product not found</div>;
   return (
-    <div className="flex p-10 gap-10">
+    <div className="flex flex-col xl:flex-row md:flex-row lg:flex-row justify-center items-center p-4 xl:p-10 gap-10">
       <div className="w-1/2 overflow-hidden flex justify-center ring-1 ring-gray-300 p-10">
         <img
           src={product.image}
           alt={product.name}
-          className="w-96 hover:scale-[1.8] transition-all duration-300 "
+          className="w-96 xl:h-full hover:scale-[1.8] transition-all duration-300 "
         />
       </div>
 
