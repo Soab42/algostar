@@ -31,7 +31,7 @@ export const selectFilteredProducts = createSelector(
         if (filter.sort === 'rating') {
           return b.rating - a.rating;
         }
-        return 0; // Default sorting logic (e.g., relevance)
+        return 0;
       });
   },
 );

@@ -118,8 +118,19 @@ export default function CartPage({ setOpen }) {
                 </td>
                 <td>{(item.price * item.quantity).toFixed(2)}</td>
                 <td>
-                  <button onClick={() => dispatch(clearCart(item))}>
-                    <AiFillDelete />
+                  <button
+                    className="p-2 px-4 text-xl"
+                    onClick={() => {
+                      // Show confirmation dialog
+                      const confirmed = window.confirm(
+                        'Are you sure you want to remove this item from the cart?',
+                      );
+                      if (confirmed) {
+                        dispatch(clearCart(item));
+                      }
+                    }}
+                  >
+                    <AiFillDelete className="text-red-500 text-2xl" />
                   </button>
                 </td>
               </tr>

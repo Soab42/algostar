@@ -1,8 +1,10 @@
-// write a cart slice for products
-
 import { createSlice } from '@reduxjs/toolkit';
+import {
+  loadCartFromLocalStorage,
+  saveCartToLocalStorage,
+} from '../selector/helper';
 
-const initialState = [];
+const initialState = loadCartFromLocalStorage();
 
 const cartSlice = createSlice({
   name: 'cart',
@@ -14,12 +16,13 @@ const cartSlice = createSlice({
       );
       if (existingProduct) {
         existingProduct.quantity += action.payload.quantity;
-      } else if (!existingProduct) {
+      } else {
         state.push({
           ...action.payload,
           quantity: action.payload.quantity || 1,
         });
       }
+      saveCartToLocalStorage(state); // Save to localStorage after adding
     },
     removeFromCart: (state, action) => {
       const existingProduct = state.find(
@@ -27,15 +30,21 @@ const cartSlice = createSlice({
       );
       if (existingProduct) {
         if (existingProduct.quantity === 1) {
-          state = state.filter((item) => item?.id !== action.payload?.id);
+          const newState = state.filter(
+            (item) => item.id !== action.payload.id,
+          );
+          saveCartToLocalStorage(newState); // Save to localStorage after removing
+          return newState;
         } else {
           existingProduct.quantity -= 1;
         }
       }
+      saveCartToLocalStorage(state); // Save to localStorage after updating quantity
     },
-
     clearCart: (state, action) => {
-      state = state.filter((item) => item.id !== action.payload.id);
+      const newState = state.filter((item) => item.id !== action.payload.id);
+      saveCartToLocalStorage(newState); // Save to localStorage after clearing
+      return newState;
     },
   },
 });
